@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   maven: circleci/maven@0.0.12
-
+            
 jobs:
   build:
     docker:
@@ -14,7 +14,10 @@ jobs:
           command: mvn verify sonar:sonar
 
 workflows:
-  main:
+  maven_test:
+    jobs:
+      - maven/test
+  sonar-build:
     jobs:
       - build:
           context: SonarCloud
