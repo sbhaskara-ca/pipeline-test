@@ -71,8 +71,6 @@ workflows:
     when: pipeline.parameters.deploy-to-prod
     jobs: 
       - deploy-prod:
-          requires: 
-            - maven/test
           filters:
             tags: 
               only: /^v.*/
