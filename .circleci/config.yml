@@ -60,32 +60,21 @@ workflows:
       - maven/test:
           filters:
             branches: 
-              only: dev
+              only: master
       - deploy-stage:
           requires: 
             - maven/test
           filters:
             branches: 
-              only: dev
+              only: master
   deploy-to-prod:
     when: pipeline.parameters.deploy-to-prod
     jobs: 
-      - maven/test:
-          filters:
-            branches: 
-              only: master
       - deploy-prod:
           requires: 
             - maven/test
           filters:
-            branches: 
-              only: master
-
-    
-    
-          
-            
-          
-
-
-      
+            tags: 
+              only: /^v.*/
+            branches:
+              ignore: /.*/
