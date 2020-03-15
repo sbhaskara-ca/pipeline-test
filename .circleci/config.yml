@@ -57,7 +57,10 @@ workflows:
   deploy-to-stage:
     when: pipeline.parameters.deploy-to-stage
     jobs: 
-      - maven/test
+      - maven/test:
+          filters:
+            branches: 
+              only: master
       - deploy-stage:
           requires: 
             - maven/test
@@ -67,7 +70,10 @@ workflows:
   deploy-to-prod:
     when: pipeline.parameters.deploy-to-prod
     jobs: 
-      - maven/test
+      - maven/test:
+          filters:
+            branches: 
+              only: master
       - deploy-prod:
           requires: 
             - maven/test
