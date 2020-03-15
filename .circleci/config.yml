@@ -2,23 +2,72 @@ version: 2.1
 
 orbs:
   maven: circleci/maven@0.0.12
+
+
+parameters:
+  deploy-to-stage:
+    type: boolean
+    default: false
+  deploy-to-prod:
+    type: boolean
+    default: false
   
 jobs:
+  
   sonar-build:
+    context: SonarCloud
     docker:
       - image: 'circleci/openjdk:11-jdk'
+    filters:
+      branches:
+        only: master
     steps:
       - checkout
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
     
-          
+  
+  deploy-prod:
+    when: parameters.deploy-to-stage
+    docker: 
+      - image: 'circleci/openjdk:11-jdk'
+    steps:
+      - run:
+          name: Deploy to production server
+          command: echo 'Hello World - STAGE!'
+    
 
+  deploy-stage:
+    when: pipeline.parameters.deploy-prod
+    docker: 
+      - image: 'circleci/openjdk:11-jdk'
+    steps:
+      - run:
+          name: Deploy to Staging server
+          command: echo 'Hello World - PROD!'
+    
+  
 workflows:
+  version: 2
   main:
     jobs:
       - maven/test 
       - sonar-build:
-          context: SonarCloud
+          requires:
+            - maven/test
+  deploy-to-stage:
+    jobs:
+      - maven/test
+      - deploy-stage
+  deploy-t0-prod:
+    jobs:
+      - maven/test
+      - deploy-prod
+        
+
+            
+          
+
+
       
