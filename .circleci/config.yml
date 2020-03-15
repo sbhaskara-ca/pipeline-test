@@ -15,12 +15,8 @@ parameters:
 jobs:
   
   sonar-build:
-    context: SonarCloud
     docker:
       - image: 'circleci/openjdk:11-jdk'
-    filters:
-      branches:
-        only: master
     steps:
       - checkout
       - run:
@@ -29,7 +25,6 @@ jobs:
     
   
   deploy-prod:
-    when: parameters.deploy-to-stage
     docker: 
       - image: 'circleci/openjdk:11-jdk'
     steps:
@@ -39,7 +34,6 @@ jobs:
     
 
   deploy-stage:
-    when: pipeline.parameters.deploy-prod
     docker: 
       - image: 'circleci/openjdk:11-jdk'
     steps:
@@ -54,18 +48,36 @@ workflows:
     jobs:
       - maven/test 
       - sonar-build:
+          context: SonarCloud
           requires:
             - maven/test
+          filters:
+            branches:
+              only: master
   deploy-to-stage:
-    jobs:
+    when: pipeline.parameters.deploy-to-stage
+    jobs: 
       - maven/test
-      - deploy-stage
-  deploy-t0-prod:
-    jobs:
+      - deploy-stage:
+          requires: 
+            - maven/test
+          filters:
+            branches: 
+              only: dev
+  deploy-to-prod:
+    when: pipeline.parameters.deploy-to-prod
+    jobs: 
       - maven/test
-      - deploy-prod
-        
+      - deploy-prod:
+          requires: 
+            - maven/test
+          filters:
+            branches: 
+              only: master
 
+    
+    
+          
             
           
 
