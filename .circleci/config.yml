@@ -60,7 +60,7 @@ workflows:
       - maven/test:
           filters:
             branches: 
-              only: master
+              only: dev
       - deploy-stage:
           requires: 
             - maven/test
