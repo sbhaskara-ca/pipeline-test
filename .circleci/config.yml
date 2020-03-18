@@ -46,19 +46,13 @@ workflows:
   version: 2
   main:
     jobs:
-      - checkout
-      - maven/test:
-          requires:
-            - checkout
-
+      - maven/test
+      
   deploy-to-stage:
     when: pipeline.parameters.deploy-to-stage
     jobs:
-      - checkout 
       - sonar-build:
           context: SonarCloud
-          requires:
-            - checkout
           filters:
             branches:
               only: master
@@ -69,14 +63,11 @@ workflows:
           filters:
             branches: 
               only: master
-              
+
   deploy-to-prod:
     when: pipeline.parameters.deploy-to-prod
     jobs: 
-      - checkout
       - maven/test:
-          requires:
-            - checkout
       - deploy-prod:
           requires:
             - maven/test
