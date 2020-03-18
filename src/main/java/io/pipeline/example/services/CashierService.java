@@ -23,6 +23,11 @@ public class CashierService {
 		try {
 			System.out.println(System.getenv("CONNECTALL_HOME"));
 			System.out.println(System.getenv("MULE_HOME"));
+			System.out.println(System.getenv("MULE_HOME"));
+			System.out.println(System.getenv("MULE_HOME"));
+			System.out.println(System.getenv("MULE_HOME"));
+			System.out.println(System.getenv("MULE_HOME"));
+			System.out.println(System.getenv("MULE_HOME"));
 			throw new IllegalArgumentException("Wrong argument");
 		}catch(Exception e) {
 			System.out.println(e);
