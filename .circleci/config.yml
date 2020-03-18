@@ -48,9 +48,9 @@ workflows:
     jobs:
       - maven/test
           
-  sonar-build:
+  continuous-verification:
     jobs:
-      - sonar:
+      - sonar-build:
           context: SonarCloud
           filters:
             branches:
