@@ -11,6 +11,9 @@ parameters:
   deploy-to-prod:
     type: boolean
     default: false
+  verify:
+    type: boolean
+    default: true
   
 jobs:
   
@@ -49,6 +52,7 @@ workflows:
       - maven/test
           
   continuous-verification:
+    when: << pipeline.parameters.verify >>
     jobs:
       - sonar-build:
           context: SonarCloud
