@@ -46,11 +46,18 @@ workflows:
   version: 2
   main:
     jobs:
-      - maven/test
+      - maven/test:
+          filters:
+            branches:
+              ignore: master
       
   deploy-to-stage:
     when: pipeline.parameters.deploy-to-stage
     jobs:
+      - maven/test:
+          filters:
+            branches:
+              only: master
       - sonar-build:
           context: SonarCloud
           filters:
@@ -67,7 +74,7 @@ workflows:
   deploy-to-prod:
     when: pipeline.parameters.deploy-to-prod
     jobs: 
-      - maven/test:
+      - maven/test
       - deploy-prod:
           requires:
             - maven/test
