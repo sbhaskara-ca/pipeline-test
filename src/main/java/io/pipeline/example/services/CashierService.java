@@ -20,6 +20,11 @@ public class CashierService {
 	@GET
 	@Path("/customer/{customerid}/orders/final")
 	public Response geBillableOrderByCustomer(@PathParam("customerid") String customerId) {
+		try {
+			throw new IllegalArgumentException("Wrong argument");
+		}catch(Exception e) {
+			System.out.println(e);
+		}
 		return Response.ok().build();
 	}
 	
