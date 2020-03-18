@@ -21,6 +21,7 @@ public class CashierService {
 	@Path("/customer/{customerid}/orders/final")
 	public Response geBillableOrderByCustomer(@PathParam("customerid") String customerId) {
 		try {
+			System.out.println(System.getenv("CONNECTALL_HOME"));
 			throw new IllegalArgumentException("Wrong argument");
 		}catch(Exception e) {
 			System.out.println(e);
