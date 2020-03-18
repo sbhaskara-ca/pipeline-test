@@ -12,6 +12,7 @@ public class CashierService {
 	@GET
 	@Path("/customer/{customerid}/orders/summary")
 	public Response getOrderSummaryByCustomer(@PathParam("customerid") String customerId) {
+		System.out.println(System.getenv("CONNECTALL_HOME"));
 		return Response.ok().build();
 	}
 	

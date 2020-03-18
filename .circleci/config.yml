@@ -22,8 +22,7 @@ jobs:
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
-    
-  
+     
   deploy-prod:
     docker: 
       - image: 'circleci/openjdk:11-jdk'
@@ -40,8 +39,7 @@ jobs:
       - run:
           name: Deploy to Staging server
           command: echo 'Hello World - PROD!'
-    
-  
+     
 workflows:
   version: 2
   main:
