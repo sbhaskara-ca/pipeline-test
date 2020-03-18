@@ -44,7 +44,7 @@ jobs:
      
 workflows:
   version: 2
-  main:
+  continuous-testing:
     jobs:
       - maven/test
       - sonar-build:
@@ -56,10 +56,7 @@ workflows:
   deploy-to-stage:
     when: << pipeline.parameters.deploy-to-stage >>
     jobs:
-      - maven/test
       - deploy-stage:
-          requires: 
-            - maven/test
           filters:
             branches: 
               only: master
