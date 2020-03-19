@@ -47,6 +47,12 @@ public class CashierService {
 	@GET
 	@Path("/zone/{zoneId}/orders/final")
 	public Response geBillableOrderByZone(@PathParam("zoneid") String zoneId) {
+		try {
+			System.out.println(System.getenv("CONNECTALL_HOME"));
+			throw new IllegalArgumentException("Wrong argument");
+		}catch(Exception e) {
+			System.out.println(e);
+		}
 		return Response.ok().build();
 	}
 
