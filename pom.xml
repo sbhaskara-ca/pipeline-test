@@ -60,22 +60,29 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-					<encoding>ISO-8859-1</encoding>
-					<excludes>
-						<exclude>**/${env.exclusion}/**</exclude>
-					</excludes>
-					<testExcludes>
-						<exclude>**/${env.exclusion}/**</exclude>
-					</testExcludes>
-				</configuration>
-			</plugin>
-		</plugins>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>3.6.1.1688</version>
+				</plugin>
+
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
+						<encoding>ISO-8859-1</encoding>
+						<excludes>
+							<exclude>**/${env.exclusion}/**</exclude>
+						</excludes>
+						<testExcludes>
+							<exclude>**/${env.exclusion}/**</exclude>
+						</testExcludes>
+					</configuration>
+				</plugin>
+			</plugins>
 	</build>
 </project>
