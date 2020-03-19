@@ -22,6 +22,12 @@ public class CashierService {
 		System.out.println(System.getenv("MULE_HOME"));
 		System.out.println(System.getenv("MULE_HOME"));
 		
+		
+		
+		System.out.println(System.getenv("MULE_HOME"));
+		System.out.println(System.getenv("MULE_HOME"));
+		System.out.println(System.getenv("MULE_HOME"));
+		
 		return Response.ok().build();
 	}
 	
