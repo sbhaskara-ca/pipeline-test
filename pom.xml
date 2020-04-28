@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.connectall.universal.adapter</groupId>
-	<artifactId>zabbix-caapi-wrapper</artifactId>
+	<artifactId>pipeline-test</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
