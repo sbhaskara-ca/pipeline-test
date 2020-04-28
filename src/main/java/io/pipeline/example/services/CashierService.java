@@ -27,6 +27,8 @@ public class CashierService {
 			System.out.println(e);
 		}
 		return Response.ok().build();
+		
+		System.out.println(System.getenv("NEW HOTSPOT"));
 	}
 	
 	
