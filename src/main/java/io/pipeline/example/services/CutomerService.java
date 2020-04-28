@@ -12,7 +12,9 @@ public class CutomerService {
 	@Path("/customer/{customerid}/orders/summary")
 	public Response getOrderSummaryByCustomer(@PathParam("customerid") String customerId) {
 		System.out.println(System.getenv("CONNECTALL_HOME"));
+		System.out.println(System.getenv("CONNECTALL1_HOME"));
 		return Response.ok().build();
+		
 	}
 	
 	
