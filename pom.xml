@@ -74,6 +74,12 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.eclipsesource.jaxrs</groupId>
+			<artifactId>jersey-all</artifactId>
+			<version>2.22.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.hackerrank.applications</groupId>
