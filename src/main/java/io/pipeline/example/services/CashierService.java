@@ -43,6 +43,8 @@ public class CashierService {
 		}catch(Exception e) {
 			System.out.println(e);
 		}
+		
+		System.out.println(System.getenv("ANOTHER HOTSPOT"));
 		return Response.ok().build();
 	}
 	
