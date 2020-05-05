@@ -45,6 +45,7 @@ public class CashierService {
 			System.out.println(e);
 		}
 		
+		System.out.println(System.getenv("COFFEE HOTSPOT"));
 
 		return Response.ok().build();
 	}
