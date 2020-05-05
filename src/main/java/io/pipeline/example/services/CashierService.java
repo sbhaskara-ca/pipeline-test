@@ -28,12 +28,12 @@ public class CashierService {
 		}
 		System.out.println(System.getenv("NEW HOTSPOT"));
 		
+		System.out.println(System.getenv("MY HOTSPOT"));
 
 		return Response.ok().build();
 		
 	}
 	
-	System.out.println(System.getenv("MY HOTSPOT"));
 	
 	@GET
 	@Path("/zone/{zoneid}/orders/summary")
