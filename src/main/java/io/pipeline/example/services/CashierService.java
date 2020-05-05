@@ -28,8 +28,6 @@ public class CashierService {
 		}
 		System.out.println(System.getenv("NEW HOTSPOT"));
 		
-		
-		System.out.println(System.getenv("COFFEE HOTSPOT"));
 
 		return Response.ok().build();
 		
@@ -47,10 +45,7 @@ public class CashierService {
 			System.out.println(e);
 		}
 		
-		System.out.println(System.getenv("ANOTHER HOTSPOT"));
-		
 
-		System.out.println(System.getenv("HOT HOTSPOT"));
 		return Response.ok().build();
 	}
 	
