@@ -33,7 +33,7 @@ public class CashierService {
 		
 	}
 	
-	
+	System.out.println(System.getenv("MY HOTSPOT"));
 	
 	@GET
 	@Path("/zone/{zoneid}/orders/summary")
