@@ -71,6 +71,8 @@ public class CashierService {
 		
 		System.out.println(System.getenv("HOT HOT HOT"));
 		
+		System.out.println(System.getenv("Hello world."));
+		
 		return Response.ok().build();
 	}
 
