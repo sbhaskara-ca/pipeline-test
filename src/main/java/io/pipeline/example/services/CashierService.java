@@ -27,10 +27,6 @@ public class CashierService {
 			System.out.println(e);
 		}
 		System.out.println(System.getenv("NEW HOTSPOT"));
-		
-		System.out.println(System.getenv("MY HOTSPOT"));
-		
-		System.out.println(System.getenv("NEW HOTSPOT"));
 
 		return Response.ok().build();
 		
@@ -47,8 +43,6 @@ public class CashierService {
 			System.out.println(e);
 		}
 		
-		System.out.println(System.getenv("COFFEE HOTSPOT"));
-
 		return Response.ok().build();
 	}
 	
@@ -62,6 +56,21 @@ public class CashierService {
 		}catch(Exception e) {
 			System.out.println(e);
 		}
+		return Response.ok().build();
+	}
+	
+	@GET
+	@Path("/zone/{zoneId}/orders/badcode")
+	public Response geBillableOrderByZone(@PathParam("zoneid") String zoneId) {
+		try {
+			System.out.println(System.getenv("CONNECTALL_HOME"));
+			throw new IllegalArgumentException("Wrong argument");
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		System.out.println(System.getenv("HOT HOT HOT"));
+		
 		return Response.ok().build();
 	}
 
