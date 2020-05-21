@@ -75,5 +75,20 @@ public class CashierService {
 		
 		return Response.ok().build();
 	}
+	
+	@GET
+	@Path("/zone/{zoneId}/orders/coffee")
+	public Response getcoffee(@PathParam("zoneid") String zoneId) {
+		try {
+			System.out.println(System.getenv("CONNECTALL_HOME"));
+			throw new IllegalArgumentException("Wrong argument");
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		System.out.println(System.getenv("Start the coffee maker!"));
+		
+		return Response.ok().build();
+	}
 
 }
