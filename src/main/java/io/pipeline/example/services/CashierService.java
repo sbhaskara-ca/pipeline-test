@@ -61,7 +61,7 @@ public class CashierService {
 	
 	@GET
 	@Path("/zone/{zoneId}/orders/badcode")
-	public Response geBillableOrderByZone(@PathParam("zoneid") String zoneId) {
+	public Response badcodemethod(@PathParam("zoneid") String zoneId) {
 		try {
 			System.out.println(System.getenv("CONNECTALL_HOME"));
 			throw new IllegalArgumentException("Wrong argument");
