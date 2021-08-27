@@ -11,7 +11,7 @@ if [ ! -f lasttime ]; then
 fi
 
 # Get the last time a poll was run and build the json request
-lastRun="`date -r lasttime "+%Y-%m-%d %H:%M:%S"`.001"
+lastRun="`date -r -u lasttime "+%Y-%m-%d %H:%M:%S"`.001"
 #lastRun="2017-08-24 14:30:00.000"
 echo Last run was $lastRun
 
