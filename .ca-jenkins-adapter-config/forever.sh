@@ -1,5 +1,3 @@
-while [ 1==1 ]
-do
+echo "Starting the polling"
 	./.ca-jenkins-adapter-config/poll_ado.sh LeanKitBuild
-	sleep 60
-done
+echo "Completed the poll"
