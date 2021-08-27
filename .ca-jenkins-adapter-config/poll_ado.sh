@@ -5,13 +5,14 @@
 
 . .ca-jenkins-adapter-config/setup.sh
 
+lasttime_fn="\tmp\\`echo $JOB_NAME`-lasttime"
 echo "-----------------------------------------"
-if [ ! -f lasttime ]; then
-	touch lasttime
+if [ ! -f $lasttime_fn ]; then
+	touch $lasttime_fn
 fi
 
 # Get the last time a poll was run and build the json request
-lastRun="`date -r lasttime "+%Y-%m-%d %H:%M:%S"`.001"
+lastRun="`date -r -u $lasttime_fn "+%Y-%m-%d %H:%M:%S"`.001"
 #lastRun="2017-08-24 14:30:00.000"
 echo Last run was $lastRun
 
@@ -32,7 +33,7 @@ curl \
 -d "$json" \
  ${ConnectAllUrl}/connectall/api/2/search?apikey=$ConnectAllApiKey | tee request.json
 
-touch lasttime
+touch $lasttime_fn
 echo
 
 # Parse out each build to run
