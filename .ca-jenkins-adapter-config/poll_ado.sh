@@ -3,7 +3,7 @@
 # Author: Doug Bass
 # Copyright 2019 ConnectALL LLC
 
-. setup.sh
+. .ca-jenkins-adapter-config/setup.sh
 
 echo "-----------------------------------------"
 if [ ! -f lasttime ]; then

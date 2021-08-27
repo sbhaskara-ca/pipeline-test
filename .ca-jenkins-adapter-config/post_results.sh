@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo run setup
-. setup.sh
+. .ca-jenkins-adapter-config/setup.sh
 
 json="
 {\"appLinkName\":\"$9\",

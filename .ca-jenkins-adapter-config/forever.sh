@@ -1,5 +1,5 @@
 while [ 1==1 ]
 do
-	./poll_ado.sh LeanKitBuild
+	./.ca-jenkins-adapter-config/poll_ado.sh LeanKitBuild
 	sleep 60
 done
