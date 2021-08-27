@@ -45,7 +45,7 @@ do
 
 #workspace=`cat request.json | sed -e 's/[{}]/''/g' | awk -v RS=',"' -F: '/workspace/ {print $2}' | sed -e 's/\"//g'`
 workspace=`jq <request.json .data[$i].fields.workspace | sed -e 's/\"//g'`
-workspace=hello
+workspace=CarlsCompany_Pipelinetest
 echo
 echo Workspace is $workspace
 
