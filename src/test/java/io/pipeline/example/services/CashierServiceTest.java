@@ -18,6 +18,13 @@ public class CashierServiceTest {
 			System.out.println(e);
 		}
 		
+		try {
+			System.out.println(System.getenv("CONNECTALL_HOME"));
+			throw new IllegalArgumentException("Wrong argument");
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
 		Assert.assertTrue(true);
 	}
 
