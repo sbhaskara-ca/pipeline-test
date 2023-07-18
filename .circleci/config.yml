@@ -1,97 +1,46 @@
-version: 2.1
+# Java Gradle CircleCI 2.0 configuration file
+# See: https://circleci.com/docs/language-java/
+version: 2
 
-orbs:
-  maven: circleci/maven@0.0.12
-
-
-parameters:
-  deploy-to-stage:
-    type: boolean
-    default: false
-  deploy-to-prod:
-    type: boolean
-    default: false
-  verify:
-    type: boolean
-    default: true
-  test:
-    type: boolean
-    default: true
-  
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  
-  sonar-build:
+  build:
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: 'circleci/openjdk:11-jdk'
+      # specify the version you desire here
+      - image: circleci/openjdk:8-jdk
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    working_directory: ~/repo
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+    # Add steps to the job
+    # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
       - checkout
-      - run:
-          name: Analyze on SonarCloud
-          command: mvn verify sonar:sonar
-     
-  deploy-prod:
-    docker: 
-      - image: 'circleci/openjdk:11-jdk'
-    steps:
-      - run: echo "Deploy-To-Prod Parameter = << pipeline.parameters.deploy-to-prod >>"
-      - run:
-          name: Deploy to production server
-          command: echo 'Hello World - STAGE!'
-    
 
-  deploy-stage:
-    docker: 
-      - image: 'circleci/openjdk:11-jdk'
-    steps:
-      - run: echo "Deploy-To-Stage Parameter = << pipeline.parameters.deploy-to-stage >>"
-      - run:
-          name: Deploy to Staging server
-          command: echo 'Hello World - PROD!'
-     
-workflows:
-  version: 2
-  continuous-testing:
-    when: << pipeline.parameters.test >>
-    jobs:
-      - maven/test
-          
-  continuous-verification:
-    when: << pipeline.parameters.verify >>
-    jobs:
-      - sonar-build:
-          context: SonarCloud
-          filters:
-            branches:
-              only: master
-      
-  continuous-integration:
-    when: << pipeline.parameters.deploy-to-stage >>
-    jobs:
-      - maven/test:
-          filters:
-            branches:
-              only: master
-      - deploy-stage:
-          requires:
-            - maven/test
-          filters:
-            branches: 
-              only: master
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-  continuous-deployment:
-    when: << pipeline.parameters.deploy-to-prod >>
-    jobs: 
-      - maven/test:
-          filters:
-            tags:
-              only: /^V-.*/
-            branches:
-              ignore: /.*/
-      - deploy-prod:
-          requires:
-            - maven/test
-          filters:
-            tags:
-              only: /^V-.*/
-            branches:
-              ignore: /.*/
+      - run: gradle dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      # run tests!
+      - run: gradle test
